@@ -10,43 +10,39 @@ import React, {useEffect} from 'react';
 import Home from './src/screens/containers/home';
 import Header from './src/sections/components/header';
 import SuggestionList from './src/videos/containers/suggestion-list';
-import Player from './src/player/containers/player';
-
-// import {axiosGet} from './utils/axios';
 import CategoryList from './src/videos/containers/category-list';
-import dummyData from './utils/dummyData';
-import dummyMovies from './utils/dummyMovie';
+import {useDispatch} from 'react-redux';
+import {getSuggestions, getCategories} from './src/store/actions/actions';
+import Movie from './src/screens/containers/movie';
+import {connect} from 'react-redux';
+import {isEmpty} from 'lodash';
+import Search from './src/sections/containers/search';
 
-const App: () => React$Node = () => {
-  // useEffect(() => {
-  //   axiosGet('https://yts.mx/api/v2/movie_suggestions.json?movie_id=10')
-  //     .then((response) => {
-  //       console.log(response);
+const App: () => React$Node = (props) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getSuggestions());
+    dispatch(getCategories());
+  });
 
-  //       return;
-  //     })
-  //     .catch((error) => {
-  //       throw error;
-  //     });
-
-  //   axiosGet('https://yts.mx/api/v2/list_movies.json')
-  //     .then((response) => {
-  //       console.log(response);
-
-  //       return;
-  //     })
-  //     .catch((error) => {
-  //       throw error;
-  //     });
-  // }, []);
-
-  return (
-    <Home>
-      <Header />
-      <Player />
-      <CategoryList list={dummyMovies.data.movies} />
-      <SuggestionList list={dummyData.data.movies} />
-    </Home>
-  );
+  if (!isEmpty(props.selectedMovie)) {
+    return <Movie />;
+  } else {
+    return (
+      <Home>
+        <Header />
+        <Search />
+        <CategoryList />
+        <SuggestionList />
+      </Home>
+    );
+  }
 };
-export default App;
+
+const mapStateToProps = (state) => {
+  return {
+    selectedMovie: state.selectedMovie,
+  };
+};
+
+export default connect(mapStateToProps)(App);

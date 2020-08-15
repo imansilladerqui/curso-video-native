@@ -1,15 +1,23 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {
+  View,
+  StyleSheet
+} from 'react-native';
 
-const horizontalSeparator = () => {
-  return <View style={[styles.separator]} />;
-};
+function HorizontalSeparator(props) {
+  return (
+     <View
+      style={styles.separator}
+     />
+  )
+}
 
-const styles = StyleSheet.create({
+const styles = {
   separator: {
     flex: 1,
     marginHorizontal: 5,
-  },
-});
+  }
+}
 
-export default horizontalSeparator;
+
+export default HorizontalSeparator

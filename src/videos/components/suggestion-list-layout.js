@@ -1,14 +1,18 @@
 import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet
+} from 'react-native';
 
-const SuggestionListLayout = (props) => {
+function SuggestionListLayout(props) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{props.title}</Text>
       {props.children}
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -21,6 +25,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontWeight: 'bold',
     marginLeft: 8,
-  },
-});
-export default SuggestionListLayout;
+  }
+})
+
+export default SuggestionListLayout

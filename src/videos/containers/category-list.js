@@ -1,38 +1,37 @@
 import React from 'react';
-import {FlatList} from 'react-native';
-import Layout from '../components/category-list-layout';
+import {View, FlatList} from 'react-native';
 import Empty from '../components/empty';
 import Separator from '../../sections/components/horizontal-separator';
 import Category from '../components/category';
-
-const renderEmpty = () => {
-  return <Empty text="No hay sugerencias" />;
-};
-
-const itemSeparator = () => {
-  return <Separator />;
-};
-
-const renderItem = (item) => {
-  return <Category {...item} />;
-};
-
-const keyExtractor = (item) => {
-  return item.id.toString();
-};
+import Layout from '../components/category-list-layout';
+import {connect} from 'react-redux';
 
 const CategoryList = (props) => {
+  const keyExtractor = (item) => item.id.toString();
+  const renderEmpty = () => <Empty text="No hay sugerencias :(" />;
+  const itemSeparator = () => <Separator />;
+  const renderItem = ({item}) => {
+    return <Category {...item} />;
+  };
+
   return (
     <Layout title="Categorias">
       <FlatList
         horizontal
-        keyExtractor={(item) => keyExtractor(item)}
-        data={props.list}
-        ListEmptyComponent={() => renderEmpty()}
-        ItemSeparatorComponent={() => itemSeparator()}
-        renderItem={(item) => renderItem(item)}
+        keyExtractor={keyExtractor}
+        data={props.category}
+        ListEmptyComponent={renderEmpty}
+        ItemSeparatorComponent={itemSeparator}
+        renderItem={renderItem}
       />
     </Layout>
   );
 };
-export default CategoryList;
+
+const mapStateToProps = (state) => {
+  return {
+    category: state.category,
+  };
+};
+
+export default connect(mapStateToProps)(CategoryList);

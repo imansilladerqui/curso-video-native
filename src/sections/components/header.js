@@ -1,21 +1,29 @@
-/* eslint-disable prettier/prettier */
 import React from 'react';
-import {View, Text, Image, StyleSheet, SafeAreaView} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  SafeAreaView,
+} from 'react-native';
 
-import logo from '../../../assets/logo.png';
-
-const Header = (props) => {
+function Header(props) {
   return (
     <View>
       <SafeAreaView>
         <View style={styles.container}>
-          <Image source={logo} style={styles.logo} />
-          <View style={styles.right}>{props.children}</View>
+          <Image
+            source={require('../../../assets/logo.png')}
+            style={styles.logo}
+          />
+          <View style={styles.right}>
+            {props.children}
+          </View>
         </View>
       </SafeAreaView>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   logo: {
@@ -24,14 +32,15 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   container: {
-    padding: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
     flexDirection: 'row',
   },
   right: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-end',
-  },
-});
+  }
+})
 
 export default Header;
