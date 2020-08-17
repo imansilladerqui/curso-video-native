@@ -21,7 +21,7 @@ const Movie = (props) => {
       <Header>
         <Close onPress={closeVideo} />
       </Header>
-      <Player />
+      {/* <Player /> */}
       <Details {...props.selectedMovie} />
     </MovieLayout>
   );

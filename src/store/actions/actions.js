@@ -46,7 +46,7 @@ export const searchMovie = (title) => (dispatch) => {
     .then((response) => {
       dispatch({
         type: actionTypes.SET_SELECTED_MOVIE,
-        payload: response.data.movies,
+        payload: response.data.data.movies,
       });
     })
     .catch((error) => {

@@ -26,23 +26,25 @@ const makeHTML = (id) => {
 };
 
 const Details = (props) => {
-  console.log(props);
+  const {
+    title,
+    medium_cover_image,
+    description_full,
+    yt_trailer_code,
+  } = props[0];
   return (
     <ScrollView>
       <View style={styles.top}>
-        <Text>{props.title}</Text>
+        <Text>{title}</Text>
       </View>
       <View style={styles.bottom}>
         <View style={styles.details}>
-          <Image
-            style={styles.cover}
-            source={{uri: props.medium_cover_image}}
-          />
-          <Text style={styles.description}>{props.description_full}</Text>
+          <Image style={styles.cover} source={{uri: medium_cover_image}} />
+          <Text style={styles.description}>{description_full}</Text>
         </View>
       </View>
       <View style={styles.trailer}>
-        <WebView source={{html: makeHTML(props.yt_trailer_code)}} />
+        <WebView source={{html: makeHTML(yt_trailer_code)}} />
       </View>
     </ScrollView>
   );
