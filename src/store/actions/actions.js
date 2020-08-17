@@ -9,7 +9,7 @@ export const getSuggestions = () => (dispatch) => {
     .then((response) => {
       dispatch({
         type: actionTypes.GET_SUGGESTION,
-        payload: response.data.movies,
+        payload: response.data.data.movies,
       });
     })
     .catch((error) => {
@@ -27,7 +27,7 @@ export const getCategories = () => (dispatch) => {
     .then((response) => {
       dispatch({
         type: actionTypes.GET_CATEGORIES,
-        payload: response.data.movies,
+        payload: response.data.data.movies,
       });
     })
     .catch((error) => {
